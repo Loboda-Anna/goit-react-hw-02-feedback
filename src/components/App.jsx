@@ -1,6 +1,9 @@
 import { Component } from 'react';
-import { FeedbackOptions } from './FeedbackOptions';
-import { Statistics } from './Statistics';
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
+import { Statistics } from './Statistics/Statistics';
+import { Section } from './Section/Section';
+import { Notification } from './Notifications/Notification';
+
 
 export class App extends Component {
   static defaultProps = {
@@ -40,26 +43,26 @@ export class App extends Component {
   };
   render() {
     return (
-      <div
-        style={{
-          height: '100vh',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101',
-        }}
-      >
-        <FeedbackOptions
-          options={this.state}
-          onLeaveFeedback={this.onLeaveFeedback}
-        />
-        <Statistics
-          good={this.state.good}
-          neutral={this.state.neutral}
-          bad={this.state.bad}
-          total={this.countTotalFeedback()}
-          positivePercentage={this.countPositiveFeedbackPercentage()}
-        />
+      <div className="container">
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={this.state}
+            onLeaveFeedback={this.onLeaveFeedback}
+          />
+        </Section>
+        <Section title="Statistics">
+          <Statistics
+            good={this.state.good}
+            neutral={this.state.neutral}
+            bad={this.state.bad}
+            total={this.countTotalFeedback()}
+            positivePercentage={this.countPositiveFeedbackPercentage()}
+          />
+          <Notification
+            message="There is no feedback"
+            total={this.countTotalFeedback()}
+          />
+        </Section>
       </div>
     );
   }

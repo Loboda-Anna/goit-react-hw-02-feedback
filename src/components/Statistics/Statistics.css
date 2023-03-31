@@ -1,0 +1,11 @@
+.statistics__items {
+  list-style: none;
+  font-size: 26px;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+}
+.statistics__items > li {
+    display:block;
+  margin: 10px 0;
+}
