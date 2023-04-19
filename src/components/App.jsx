@@ -4,15 +4,12 @@ import { Statistics } from './Statistics/Statistics';
 import { Section } from './Section/Section';
 import { Notification } from './Notifications/Notification';
 
-
 export class App extends Component {
   static defaultProps = {
     good: 0,
     neutral: 0,
     bad: 0,
   };
-
-  static propTypes = {};
 
   state = {
     good: 0,
@@ -42,6 +39,8 @@ export class App extends Component {
     }
   };
   render() {
+    const isFeedbackLeft = this.countTotalFeedback() > 0;
+
     return (
       <div className="container">
         <Section title="Please leave feedback">
@@ -51,17 +50,16 @@ export class App extends Component {
           />
         </Section>
         <Section title="Statistics">
-          <Statistics
-            good={this.state.good}
-            neutral={this.state.neutral}
-            bad={this.state.bad}
-            total={this.countTotalFeedback()}
-            positivePercentage={this.countPositiveFeedbackPercentage()}
-          />
-          <Notification
-            message="There is no feedback"
-            total={this.countTotalFeedback()}
-          />
+          {isFeedbackLeft && (
+            <Statistics
+              good={this.state.good}
+              neutral={this.state.neutral}
+              bad={this.state.bad}
+              total={this.countTotalFeedback()}
+              positivePercentage={this.countPositiveFeedbackPercentage()}
+            />
+          )}
+          {!isFeedbackLeft && <Notification message="There is no feedback" />}
         </Section>
       </div>
     );

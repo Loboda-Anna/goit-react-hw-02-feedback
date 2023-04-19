@@ -1,25 +1,26 @@
-import { Component } from 'react';
+import PropTypes from 'prop-types';
 import './FeedbackOptions.css';
 
-export class FeedbackOptions extends Component {
-  static defaultProps = {};
+export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+  const btnsNames = Object.keys(options);
 
-  static propTypes = {};
+  return (
+    <div>
+      {btnsNames.map(label => (
+        <button
+          key={label}
+          id={label}
+          onClick={onLeaveFeedback}
+          className="btns"
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+  );
+};
 
-  renderMarkup = () => {
-    const btnsNames = Object.keys(this.props.options);
-    return btnsNames.map(label => (
-      <button
-        key={label}
-        id={label}
-        onClick={this.props.onLeaveFeedback}
-        className="btns"
-      >
-        {label}
-      </button>
-    ));
-  };
-  render() {
-    return <div>{this.renderMarkup()}</div>;
-  }
-}
+FeedbackOptions.propTypes = {
+  options: PropTypes.object.isRequired,
+  onLeaveFeedback: PropTypes.func,
+};

@@ -1,23 +1,28 @@
-import { Component } from 'react';
-import './Statistics.css'
+import PropTypes from 'prop-types';
+import './Statistics.css';
 
-export class Statistics extends Component {
-  static defaultProps = {
-    positivePercentage: 0,
-  };
+export const Statistics = ({
+  good,
+  neutral,
+  bad,
+  total,
+  positivePercentage,
+}) => {
+  return (
+    <ul className="statistics__items">
+      <li>Good:{good}</li>
+      <li>Neutral:{neutral}</li>
+      <li>Bad:{bad}</li>
+      <li>Total:{total}</li>
+      <li>Positive feedback:{positivePercentage}%</li>
+    </ul>
+  );
+};
 
-  render() {
-    const { good, neutral, bad, total, positivePercentage } = this.props;
-    if (total) {
-      return (
-        <ul className='statistics__items'>
-          <li>Good:{good}</li>
-          <li>Neutral:{neutral}</li>
-          <li>Bad:{bad}</li>
-          <li>Total:{total}</li>
-          <li>Positive feedback:{positivePercentage}%</li>
-        </ul>
-      );
-    }
-  }
-}
+Statistics.propTypes = {
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  positivePercentage: PropTypes.number.isRequired,
+};

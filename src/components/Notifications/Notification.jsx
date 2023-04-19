@@ -1,10 +1,9 @@
-import { Component } from 'react';
+import PropTypes from 'prop-types';
 
+export const Notification = ({ message }) => {
+  return <h2 className="message ">{message}</h2>;
+};
 
-export class Notification extends Component {
-  render() {
-    if (!this.props.total) {
-      return <h2 className="message ">{this.props.message}</h2>;
-    }
-  }
-}
+Notification.propTypes = {
+  message: PropTypes.string.isRequired,
+};
