@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import './FeedbackOptions.css';
 
-export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
-  const btnsNames = Object.keys(options);
-
+export const FeedbackOptions = ({ options ,  onLeaveFeedback }) => {
+  const btnsNames = Object.values(options);
   return (
     <div>
       {btnsNames.map(label => (
@@ -21,6 +20,6 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
 };
 
 FeedbackOptions.propTypes = {
-  options: PropTypes.object.isRequired,
+  options: PropTypes.array.isRequired,
   onLeaveFeedback: PropTypes.func,
 };
